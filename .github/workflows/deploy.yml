@@ -33,19 +33,12 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: |
-          if [ -d "Portfolio-Website-main" ]; then
-            cd Portfolio-Website-main && npm run build
-          else
-            npm run build
-          fi
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            ./dist
-            ./Portfolio-Website-main/dist
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
