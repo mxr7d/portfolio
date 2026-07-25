@@ -32,18 +32,18 @@ jobs:
       - name: Recreate Code Folders
         run: |
           echo "Creating missing folders..."
-          mkdir -p src
+          mkdir -p src/components
           
           echo "Moving core files into src..."
-          # Move your main TSX and CSS files into the src directory
+          # Move your main core configuration files into src root
           [ -f "main.tsx" ] && mv main.tsx src/
           [ -f "App.tsx" ] && mv App.tsx src/
           [ -f "index.css" ] && mv index.css src/
           [ -f "vite-env.d.ts" ] && mv vite-env.d.ts src/
 
-          echo "Moving component sub-files into src..."
-          # Move all your loose component portfolio files into src/
-          mv About.tsx Contact.tsx Education.tsx Experience.tsx Footer.tsx GlobeCanvas.tsx Hero.tsx Navigation.tsx Projects.tsx ScrollProgress.tsx Skills.tsx src/
+          echo "Moving component sub-files into src/components..."
+          # Move all your presentation widgets straight into the sub-component layout
+          mv About.tsx Contact.tsx Education.tsx Experience.tsx Footer.tsx GlobeCanvas.tsx Hero.tsx Navigation.tsx Projects.tsx ScrollProgress.tsx Skills.tsx src/components/
 
       - name: Install dependencies
         run: npm ci
