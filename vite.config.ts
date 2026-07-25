@@ -1,16 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
+import fs from 'fs';
 
-// https://vitejs.dev/config/
+// Automatically detect where your actual source code folder is hiding
+const getSrcPath = () => {
+  if (fs.existsSync('./src')) return './src';
+  if (fs.existsSync('./Src')) return './Src';
+  if (fs.existsSync('./Portfolio-Website-main/src')) return './Portfolio-Website-main/src';
+  return './src'; // Fallback
+};
+
+const srcPath = getSrcPath();
+
 export default defineConfig({
   plugins: [react()],
-  // Tells Vite where your source files live relative to the repository root
-  root: './', 
-  base: './',
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': fileURLToPath(new URL(srcPath, import.meta.url)),
     },
   },
   optimizeDeps: {
