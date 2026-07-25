@@ -29,6 +29,22 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: Recreate Code Folders
+        run: |
+          echo "Creating missing folders..."
+          mkdir -p src
+          
+          echo "Moving core files into src..."
+          # Move your main TSX and CSS files into the src directory
+          [ -f "main.tsx" ] && mv main.tsx src/
+          [ -f "App.tsx" ] && mv App.tsx src/
+          [ -f "index.css" ] && mv index.css src/
+          [ -f "vite-env.d.ts" ] && mv vite-env.d.ts src/
+
+          echo "Moving component sub-files into src..."
+          # Move all your loose component portfolio files into src/
+          mv About.tsx Contact.tsx Education.tsx Experience.tsx Footer.tsx GlobeCanvas.tsx Hero.tsx Navigation.tsx Projects.tsx ScrollProgress.tsx Skills.tsx src/
+
       - name: Install dependencies
         run: npm ci
 
